@@ -1,7 +1,13 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
 
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR /src
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+COPY ./requirements.txt .
 
-COPY ./app /app/app
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY ./app /src/app
+
+COPY ./frontend /src/frontend
+
+CMD ["streamlit", "run", "frontend/app.py"]
