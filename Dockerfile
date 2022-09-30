@@ -10,4 +10,18 @@ COPY ./app /src/app
 
 COPY ./frontend /src/frontend
 
+RUN mkdir -p ~/.streamlit/
+
+ENV PORT=80
+
+RUN echo "\
+[server]\n\
+headless = true\n\
+port = $PORT\n\
+enableCORS = false\n\
+\n\
+" > ~/.streamlit/config.toml
+
+RUN echo ~/.streamlit/config.toml
+
 CMD ["streamlit", "run", "frontend/app.py"]
