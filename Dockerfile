@@ -14,14 +14,14 @@ RUN mkdir -p ~/.streamlit/
 
 ENV PORT=80
 
-RUN echo "\
-[server]\n\
-headless = true\n\
-port = $PORT\n\
-enableCORS = false\n\
-\n\
-" > ~/.streamlit/config.toml
+# RUN echo "\
+# [server]\n\
+# headless = true\n\
+# port = $PORT\n\
+# enableCORS = false\n\
+# \n\
+# " > ~/.streamlit/config.toml
 
-RUN echo ~/.streamlit/config.toml
+COPY ./config.toml ~/.streamlit/
 
 CMD ["streamlit", "run", "frontend/app.py"]
